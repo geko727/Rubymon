@@ -96,6 +96,7 @@ class Game
 		puts "Let's start our journey"
 		@loses_count = 0 
 		@win_count = 0 
+		@stay = 0 
 		adventure(@friend)
 	end	
 
@@ -116,6 +117,11 @@ class Game
 		end
 		if direction == '5'
 			puts "You decided to stand"
+			@stay += 1
+			if @stay == 3
+				@stay = 0
+				battle
+			end
 			choosedirection
 		else
 			probability
