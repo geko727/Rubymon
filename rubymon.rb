@@ -94,6 +94,7 @@ class Game
 				@friend = @bulba
 		end
 		puts "Let's start our journey"
+		@loses_count = 0 
 		adventure(@friend)
 	end	
 
@@ -126,6 +127,8 @@ class Game
 	end
 
 	def stand
+		puts "#{player.name} decided to stand"
+		choosedirection
 	end
 
 	def battle
@@ -288,7 +291,18 @@ class Game
 		if @friend.level > 1
 		@friend.level -= 1
 		end
+		@loses_count += 1
+		if @loses_count == 3
+			game_over
+		end
+		puts @loses_count
 		choosedirection
+	end
+
+	def game_over
+		puts "Sorry, #{player.name} have lost 3 battles, #{player.name} has to leave Rubymon world"
+		puts "See you soon!!!"
+		abort("bye bye")
 	end
 
 	def enemy_defense
