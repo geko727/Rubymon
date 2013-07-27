@@ -95,6 +95,7 @@ class Game
 		end
 		puts "Let's start our journey"
 		@loses_count = 0 
+		@win_count = 0 
 		adventure(@friend)
 	end	
 
@@ -208,9 +209,18 @@ class Game
 		puts
 		@friend.hp2 += 1
 		@friend.level += 1
+		@win_count += 1
+		if @win_count == 3
+			final
+		end
 		choosedirection
 	end
 
+	def final
+		puts "Congratulations #{@player.name}!!!!"
+		puts "#{@player.name} becomes the King of Rubymon's World"
+		abort("See you soon!!!")
+	end
 	def defense
 		@friend_defense = true
 		puts "#{@friend.name} choose defense"
@@ -295,7 +305,6 @@ class Game
 		if @loses_count == 3
 			game_over
 		end
-		puts @loses_count
 		choosedirection
 	end
 
